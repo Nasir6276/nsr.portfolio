@@ -1,0 +1,23 @@
+.side-navbar {
+    /* height: 100vh; */
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.side-navbar ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    color: black;
+    height: 3000px;
+}

@@ -1,101 +1,204 @@
+"use client";
+
+import { MdOutlineWbSunny } from "react-icons/md";
+import "./home.css";
+import { IoClose } from "react-icons/io5";
+import { CgMenuRight } from "react-icons/cg";
+import { useState } from "react";
+import Case1 from "./image/case-1.png";
+import Case2 from "./image/case-2.png";
+import Case3 from "./image/case-3.png";
+import project1 from "./image/project.png";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  return (
+    <div>
+      {/* header */}
+      <header className="sticky h-[70px] top-0 z-30">
+        <div className="container mx-auto flex items-center h-full justify-between">
+          <h1 className="h2 font-bold">nsr.</h1>
+          <ul className="hidden md:flex gap-[15px] ">
+            <li>
+              <a href="#">home</a>
+            </li>
+            <li>
+              <a href="#">cases</a>
+            </li>
+            <li>
+              <a href="#">projects</a>
+            </li>
+            <li>
+              <a href="#">about me</a>
+            </li>
+            <li>
+              <a href="#">contact</a>
+            </li>
+          </ul>
+
+          <nav className="flex items-right">
+            <div className="theme-btn group hidden md:block">
+              <MdOutlineWbSunny className="text-primary inline-block text-2xl cursor-pointer transform transition-transform duration-500 group-hover:rotate-[270deg]" />
+            </div>
+            <div
+              className="cursor-pointer nav_list block md:hidden"
+              id="nav_trigger_btn"
+              onClick={toggleNav}
+            >
+              {isNavOpen ? (
+                <IoClose className="text-2xl text-primary transition-all duration-500" />
+              ) : (
+                <CgMenuRight className="text-2xl text-primary transition-all duration-500" />
+              )}
+              {/* <CgMenuRight className="text-4xl text-primary" /> */}
+            </div>
+            <ul
+              className={`fixed  ${
+                isNavOpen ? "h-[300px] p-6 w-[250px]" : "h-0 p-0 w-0"
+              } rounded overflow-hidden border top-[75px] block md:hidden  right-0 flex flex-col gap-4 transition-all duration-500`}
+            >
+              <li>
+                <a href="#">home</a>
+              </li>
+              <li>
+                <a href="#">cases</a>
+              </li>
+              <li>
+                <a href="#">projects</a>
+              </li>
+              <li>
+                <a href="#">about me</a>
+              </li>
+              <li>
+                <a href="#">contact</a>
+              </li>
+              <li>
+                <div className="theme-btn group">
+                  <MdOutlineWbSunny className="text-primary inline-block text-2xl cursor-pointer transform transition-transform duration-500 group-hover:rotate-[270deg]" />
+                </div>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </header>
+
+      {/* wrapper */}
+      <main className="max-w-[1920px] mx-auto z-20 overflow-hidden">
+        {/* hero */}
+        <section className="hero h-[640px] flex flex-1 items-center justify center border-b">
+          <div className="container mx-auto">
+            <h1 className="h1 text-center">front-end.web(developer)</h1>
+          </div>
+        </section>
+
+        {/* cases */}
+        <section className="cases mt-[80px] xl:mt-[200px] relative z-20 border-b">
+          <div className="container mx-auto flex-col mb-[80px] xl:mb-[200px]">
+            {/* cases header */}
+            <div className="cases-header flex justify-center md:justify-start items-center mb-[60px]">
+              <h3 className="h3 font-bold">amazing cases</h3>
+            </div>
+
+            {/* cases image */}
+            <div className="cases-images gap-[30px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+              <div className="cases-image">
+                <Image
+                  src={Case1.src}
+                  width={0}
+                  height={0}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  unoptimized
+                  alt="case-image"
+                />
+                <p className="text-center md:text-start">rebranding</p>
+              </div>
+              <div className="cases-image">
+                <Image
+                  src={Case2.src}
+                  width={0}
+                  height={0}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  unoptimized
+                  alt="case-image"
+                />
+                <p className="text-center md:text-start">marketing</p>
+              </div>
+              <div className="cases-image">
+                <Image
+                  src={Case3.src}
+                  width={0}
+                  height={0}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  unoptimized
+                  alt="case-image"
+                />
+                <p className="text-center md:text-start">lawyer</p>
+              </div>
+              <div className="cases-image">
+                <Image
+                  src={Case1.src}
+                  width={0}
+                  height={0}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  unoptimized
+                  alt="case-image"
+                />
+                <p className="text-center md:text-start">startup</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* projects */}
+        <section className="projects mt-[80px] xl:mt-[200px] relative z-20 border-b">
+          <div className="container mx-auto mb-[80px] xl:mb-[200px]">
+            {/* project title */}
+            <div className="cases-header flex justify-center md:justify-end items-center mb-[60px]">
+              <h3 className="h3 font-bold">personal projects</h3>
+            </div>
+
+            {/* project grid */}
+            <div className="project-grid grid grid-cols-1 md:grid-cols-2">
+              {/* project 1 */}
+              <div className="single-project w-full flex-col md:flex gap-[30px] items-center">
+                {/* project image */}
+                <div className="project-image w-full md:max-w-[300px]">
+                  <Image
+                    src={project1.src}
+                    width={0}
+                    height={0}
+                    style={{ width: "100%", height: "auto" }}
+                    alt="projectImage"
+                    unoptimized
+                  />
+                </div>
+
+                {/* project text */}
+                <div className="project-text flex-1 flex flex-col items-start"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="h-[3000px]"></div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
