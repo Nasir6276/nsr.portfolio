@@ -46,6 +46,7 @@ p {
 .h3 {
   @apply text-[25px];
   position: relative;
+  cursor: pointer;
 } 
 
 .h3::before {

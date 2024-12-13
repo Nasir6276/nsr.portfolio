@@ -21,3 +21,41 @@
     color: black;
     height: 3000px;
 }
+
+.resume-button {
+    display: block;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    color: #292f36;
+    border: 1px solid #292f36;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .5s;
+}
+
+.resume-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.resume-button:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #292f36;
+    transition: all .5s;
+}
+
+.resume-button:hover {
+    color: #F3F4F6;
+}
+
+.resume-button:hover:after {
+    width: 100%;
+}
