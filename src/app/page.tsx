@@ -14,13 +14,17 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
+import { Typewriter } from "react-simple-typewriter";
 import Case1 from "./image/case-1.png";
 import Case2 from "./image/case-2.png";
 import Case3 from "./image/case-3.png";
 import project1 from "./image/project.png";
 import profile from "./image/profile.png";
+import hero from "./image/hero.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -36,19 +40,19 @@ export default function Home() {
         <div className="container mx-auto flex items-center h-full justify-between">
           <h1 className="h2 font-bold">nsr.</h1>
           <ul className="hidden md:flex gap-[15px] ">
-            <li>
+            <li className="links">
               <a href="#">home</a>
             </li>
-            <li>
+            <li className="links">
               <a href="#">cases</a>
             </li>
-            <li>
+            <li className="links">
               <a href="#">projects</a>
             </li>
-            <li>
+            <li className="links">
               <a href="#">about me</a>
             </li>
-            <li>
+            <li className="links">
               <a href="#">contact</a>
             </li>
           </ul>
@@ -102,9 +106,43 @@ export default function Home() {
       {/* wrapper */}
       <main className="max-w-[1920px] mx-auto z-20 overflow-hidden">
         {/* hero */}
-        <section className="hero h-[640px] flex flex-1 items-center justify center border-b">
-          <div className="container mx-auto">
-            <h1 className="h1 text-center">front-end.web(developer)</h1>
+        <section className="hero h-[640px] xl:h-[840] border-b">
+          <div className="container mx-auto flex flex-col items-center md:flex-row h-full gap-[50px]">
+            {/* hero text */}
+            <div className="hero-text flex-1 flex flex-col items-center justify-center md:items-start">
+              <p className="text-center md:text-start mb-[30px]">
+                Ismail Nasiru
+              </p>
+              <h1 className="h1 font-black text-center md:text-start">the</h1>
+              <p className="text-center md:text-start">
+                frontend.(
+                <span className="font-black">
+                  <Typewriter
+                    words={["web", "mobile"]}
+                    loop={false}
+                    cursor
+                    // cursorStyle=""
+                    cursorBlinking={true}
+                    typeSpeed={150}
+                    deleteSpeed={130}
+                    // delaySpeed={1000}
+                  />
+                </span>
+                )developer <br /> Lorem ipsum dolor, sit amet consectetur
+                adipisicing elit. Enim delectus.
+              </p>
+            </div>
+            <div className="hero-image flex-1 flex items-center justify-center p-[0] md:p-[30px]">
+              <Image
+                src={hero.src}
+                width={0}
+                height={0}
+                // style={{ width: "350px", height: "350" }}
+                className="w-full rounded-2xl"
+                unoptimized
+                alt="nasir"
+              />
+            </div>
           </div>
         </section>
 
@@ -213,7 +251,9 @@ export default function Home() {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laudantium asperiores aut error ratione! Magni blanditiis,
                   </p>
-                  <a href="#">see project</a>
+                  <a href="#" className="links">
+                    see project
+                  </a>
                 </div>
               </div>
 
@@ -238,7 +278,9 @@ export default function Home() {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laudantium asperiores aut error ratione! Magni blanditiis,
                   </p>
-                  <a href="#">see project</a>
+                  <a href="#" className="links">
+                    see project
+                  </a>
                 </div>
               </div>
               {/* project 1 */}
@@ -262,7 +304,9 @@ export default function Home() {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laudantium asperiores aut error ratione! Magni blanditiis,
                   </p>
-                  <a href="#">see project</a>
+                  <a href="#" className="links">
+                    see project
+                  </a>
                 </div>
               </div>
               {/* project 1 */}
@@ -286,7 +330,9 @@ export default function Home() {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laudantium asperiores aut error ratione! Magni blanditiis,
                   </p>
-                  <a href="#">see project</a>
+                  <a href="#" className="links">
+                    see project
+                  </a>
                 </div>
               </div>
             </div>
@@ -322,15 +368,17 @@ export default function Home() {
               <div className="about-text flex flex-col justify-between items-center md:items-start gap-[15px]">
                 <h2 className="h2 text-center ">Ismail Nasiru</h2>
                 <p className="text-center md:text-left">
-                  I&apos;m more than one in love for Front-End. My experience
-                  with interface design turn me one extremely criterious with
-                  alignments, margins, colors and a lot other resorces in CSS.
-                  Today I work with projects in a whole world. Codifiding in my
-                  home office, in a quiet interior of São Paulo, Brazil.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+                  perspiciatis doloribus dicta! Nulla vel, distinctio
+                  doloremque, voluptates excepturi illo provident sapiente eius
+                  explicabo id corporis asperiores. Cumque, maxime veritatis,
+                  voluptatum repudiandae veniam inventore.
                 </p>
-                <button className="resume-button">
-                  <span>download resume</span>
-                </button>
+                <a href="./Ismail_Nasiru_Resume.pdf" download>
+                  <button className="resume-button">
+                    <span>download resume</span>
+                  </button>
+                </a>
               </div>
             </div>
             {/* stacks */}
@@ -491,29 +539,47 @@ export default function Home() {
           <div className="container mx-auto mb-[60px] md:mb-[150px]">
             {/* contact header */}
             <div className="cases-header flex justify-center items-center mb-[60px]">
-              <h3 className="h3 font-bold">about me</h3>
+              <h3 className="h3 font-bold">contact me</h3>
             </div>
 
             {/* socials */}
             <div className="contact-socials flex items-center justify-center gap-[25px] md:gap-[75px] mb-[40px]">
-              <p>
-                <IoLogoWhatsapp size={30} className="text-primary" />
-              </p>
-              <p>
-                <FaLinkedin size={30} className="text-primary" />
-              </p>
-              <p>
-                <FaInstagram size={30} className="text-primary" />
-              </p>
-              <p>
-                <FaGithub size={30} className="text-primary" />
-              </p>
-              <p>
-                <SiGmail size={30} className="text-primary" />
-              </p>
-              <p>
-                <IoLogoYoutube size={30} className="text-primary" />
-              </p>
+              <Link href="https://wa.link/2cyz1z">
+                <IoLogoWhatsapp
+                  size={30}
+                  className="text-primary hover:text-[#25D366] cursor-pointer transition-text-color duration-500 ease-in-out"
+                />
+              </Link>
+              <Link href="https://www.linkedin.com/in/nasiru-ismail-ab8a5520b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                <FaLinkedin
+                  size={30}
+                  className="text-primary hover:text-[#0077B5] cursor-pointer transition-text-color duration-500 ease-in-out"
+                />
+              </Link>
+              <Link href="https://www.instagram.com/ismailnasiru_/profilecard/?igsh=bTFwanJtamI4Z3Nu">
+                <FaInstagram
+                  size={30}
+                  className="text-primary hover:text-[#e1306c] cursor-pointer transition-text-color duration-500 ease-in-out"
+                />
+              </Link>
+              <Link href="https://github.com/Nasir6276">
+                <FaGithub
+                  size={30}
+                  className="text-primary hover:text-[#171515] cursor-pointer transition-text-color duration-500 ease-in-out"
+                />
+              </Link>
+              <Link href="mailto:ni3262019@gmail.com">
+                <SiGmail
+                  size={30}
+                  className="text-primary hover:text-[#EA4335] cursor-pointer transition-text-color duration-500 ease-in-out"
+                />
+              </Link>
+              <Link href="https://x.com/ismailnasiru_?t=NxqfPFYhc0nhTlNUDW4rrg&s=09">
+                <FaXTwitter
+                  size={30}
+                  className="text-primary hover:text-[#171515] cursor-pointer transition-text-color duration-500 ease-in-out"
+                />
+              </Link>
             </div>
 
             {/* order */}
@@ -523,7 +589,13 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="h-[3000px]"></div>
+        {/* footer */}
+        <section className="relative z-20 mb-[30px]">
+          <div className="container mx-auto flex items-center justify-between">
+            <h2 className="h2 font-black">nsr.</h2>
+            <p>coded by me</p>
+          </div>
+        </section>
       </main>
     </div>
   );
