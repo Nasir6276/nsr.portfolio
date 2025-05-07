@@ -162,7 +162,7 @@ header a:hover .nav-link span {
 }
 
 #page .details .left button:hover {
-    background-color: #fff;
+    background-color: #181616;
 }
 
 #page .details .middle {
@@ -214,4 +214,130 @@ header a:hover .nav-link span {
     color: #000;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+/* page 2 */
+
+#page2 {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding: clamp(4.5rem, 4.5671rem + 0.7143vi, 5rem)
+             clamp(1.6875rem, 1.6339rem + 0.2679vi, 1.875rem);
+}
+
+#page2 h2 {
+    color: #EBEBEB;
+    font-size: clamp(3rem, 2.25rem + 3.75vw, 5.625rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+#page2 h2 span {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+#page2 .serviceText {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: flex-start;
+    gap: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+#page2 .para {
+    color: #737373;
+    font-size: clamp(0.875rem 0.5393rem + 0.5786vi, 1rem);
+    text-transform: uppercase;
+}
+
+#page2 .serviceText .serviceText2 {
+    width: 35%;
+    font-size: clamp(1rem 0.9286rem + 0.3571vi, 1.25rem);
+    color: #737373;
+    line-height: 120%;
+    text-wrap: balance;
+}
+
+#page2 .services {
+    width: 100%;
+    padding: 3rem 0rem;
+    position: relative;
+}
+
+#page2 .services .number {
+    display: flex;
+    align-items: flex-start;
+    background-color: #000;
+}
+
+#page2 .services .borders {
+    border-top: 1px solid #EBEBEB;
+    padding-top: 3rem;
+}
+
+#page2 .services .number .numberL {
+    width: 50%;
+}
+
+#page2 .services .number .numberL h2 {
+    color: #EBEBEB;
+    font-size: clamp(1.9531rem, 1.496rem + 2.2854vi, 3.5529rem);
+}
+
+#page2 .services .number .numberR {
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#page2 .services .number .numberR h3 {
+    color: #EBEBEB;
+    font-size: clamp(1.9531rem, 1.496rem + 2.2854vi, 3.5529rem);
+}
+
+#page2 .services .number .numberR p {
+    color: #fff;
+    padding-top: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
+    padding-bottom: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
+    min-width: 80%;
+    font-weight: 400;
+}
+
+#page2 .services .number .numberR .list {
+    padding-top: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
+    padding-bottom: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+#page2 .services .number .numberR .listItem {
+    font-size: clamp(1rem, 0.9286rem + 0.3571vi, 1.25rem);
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #EBEBEB;
+    width: 100%;
+    padding-bottom: 1rem;
+    gap: 2rem;
+}
+
+#page2 .services .number .numberR .listItem span {
+    font-size: clamp(1rem, 0.9286rem + 0.3571vi, 1.25rem);
+    /* padding-top: 5px; */
+}
+
+.listItem.bt {
+    border: none !important;
 }
