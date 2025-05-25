@@ -96,6 +96,7 @@ header a:hover .nav-link span {
 #page {
     width: 100%;
     height: 100vh;
+    max-height: 800px;
     padding-left: clamp(2.25rem, 2.1786rem + 0.3571vi, 2.5rem);
     padding-right: clamp(2.25rem, 2.1786rem + 0.3571vi, 2.5rem);
 }
@@ -220,7 +221,6 @@ header a:hover .nav-link span {
 
 #page2 {
     width: 100%;
-    min-height: 100vh;
     background-color: #000;
     border-top-left-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
@@ -240,104 +240,66 @@ header a:hover .nav-link span {
     display: inline-block;
     transform: translateY(100%);
     opacity: 0;
+    margin-right: 20px;
 }
 
-#page2 .serviceText {
-    display: flex;
-    width: 100%;
-    justify-content: end;
-    align-items: flex-start;
-    gap: 3rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
-
-#page2 .para {
-    color: #737373;
-    font-size: clamp(0.875rem 0.5393rem + 0.5786vi, 1rem);
-    text-transform: uppercase;
-}
-
-#page2 .serviceText .serviceText2 {
-    width: 35%;
-    font-size: clamp(1rem 0.9286rem + 0.3571vi, 1.25rem);
-    color: #737373;
-    line-height: 120%;
-    text-wrap: balance;
-}
-
-#page2 .services {
-    width: 100%;
-    padding: 3rem 0rem;
-    position: relative;
-}
-
-#page2 .services .number {
-    display: flex;
-    align-items: flex-start;
-    background-color: #000;
-}
-
-#page2 .services .borders {
-    border-top: 1px solid #EBEBEB;
-    padding-top: 3rem;
-}
-
-#page2 .services .number .numberL {
-    width: 50%;
-}
-
-#page2 .services .number .numberL h2 {
+.project p {
     color: #EBEBEB;
-    font-size: clamp(1.9531rem, 1.496rem + 2.2854vi, 3.5529rem);
-}
-
-#page2 .services .number .numberR {
-    width: 50%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-#page2 .services .number .numberR h3 {
-    color: #EBEBEB;
-    font-size: clamp(1.9531rem, 1.496rem + 2.2854vi, 3.5529rem);
-}
-
-#page2 .services .number .numberR p {
-    color: #fff;
-    padding-top: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
-    padding-bottom: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
-    min-width: 80%;
+    font-size: 15px;
     font-weight: 400;
 }
 
-#page2 .services .number .numberR .list {
-    padding-top: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
-    padding-bottom: clamp(1.125rem, 1.0893rem + 0.1786vi, 1.25rem);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: flex-start;
+.project h1 {
+    color: #EBEBEB;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.project img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-#page2 .services .number .numberR .listItem {
-    font-size: clamp(1rem, 0.9286rem + 0.3571vi, 1.25rem);
+.project {
     display: flex;
-    align-items: flex-start;
-    border-bottom: 1px solid #EBEBEB;
+    gap: 2em;
+    height: 150px;
+    border-top: 1px solid #EBEBEB;
+}
+
+.project-info {
+    flex: 2;
     width: 100%;
-    padding-bottom: 1rem;
-    gap: 2rem;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
 }
 
-#page2 .services .number .numberR .listItem span {
-    font-size: clamp(1rem, 0.9286rem + 0.3571vi, 1.25rem);
-    /* padding-top: 5px; */
+.project-img {
+    flex: 5;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
 }
 
-.listItem.bt {
-    border: none !important;
+.image {
+    width: 30%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: hidden;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
 }

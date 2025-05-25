@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Image from "next/image";
@@ -7,6 +8,8 @@ import nasImage from "@/app/image/hero1.jpg";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import project1 from "@/app/image/project1.png";
+import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,9 +24,6 @@ export default function Home() {
   const rightRefH2 = useRef(null);
   const pageRef = useRef(null);
   const page2Ref = useRef(null);
-  const ekRef = useRef(null);
-  const doRef = useRef(null);
-  const tinRef = useRef(null);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -129,75 +129,87 @@ export default function Home() {
       },
     });
 
-    gsap.to(ekRef.current, {
-      duration: 1,
-      scrollTrigger: {
-        trigger: ekRef.current,
-        start: "top 10%",
-        end: "bottom -27%",
-        scrub: true,
-        pin: true,
-        pinSpacing: false,
-      },
-    });
+    const lenis = new Lenis();
 
-    gsap.to(doRef.current, {
-      duration: 3,
-      scrollTrigger: {
-        trigger: doRef.current,
-        start: "top 30%",
-        end: "bottom 60%",
-        scrub: true,
-        pin: true,
-        pinSpacing: false,
-      },
-    });
+    lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.to(tinRef.current, {
-      duration: 3,
-      scrollTrigger: {
-        trigger: tinRef.current,
-        start: "top 45%",
-        end: "bottom 100%",
-        scrub: true,
-        pin: true,
-        pinSpacing: false,
-      },
-    });
+    const tick = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+
+    const projects = gsap.utils.toArray<HTMLElement>(".project");
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    const observerCallBack = (
+      entries: IntersectionObserverEntry[],
+      observer: IntersectionObserver
+    ) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const service = entry.target as HTMLElement;
+          const imgContainer = service.querySelector(
+            ".image"
+          ) as HTMLElement | null;
+
+          if (!imgContainer) return;
+
+          ScrollTrigger.create({
+            trigger: service,
+            start: "bottom bottom",
+            end: "top top",
+            scrub: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const newWidth = 30 + 70 * progress;
+              gsap.to(imgContainer, {
+                width: `${newWidth}%`,
+                duration: 0.1,
+                ease: "none",
+              });
+            },
+          });
+
+          ScrollTrigger.create({
+            trigger: service,
+            start: "top bottom",
+            end: "top top",
+            scrub: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const newHeight = 150 + 300 * progress;
+              gsap.to(service, {
+                height: `${newHeight}px`,
+                duration: 0.1,
+                ease: "none",
+              });
+            },
+          });
+
+          observer.unobserve(service);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallBack,
+      observerOptions
+    );
+    projects.forEach((service) => observer.observe(service));
+
+    return () => {
+      gsap.ticker.remove(tick);
+      observer.disconnect();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
-
-  const ServiceData = [
-    {
-      ref: ekRef,
-      title: "Web Application",
-      desc: `A website developed to captivate and convert can elevate your
-          brand to new heights. My custom-coded sites are meticulously
-          crafted to reflect you unique identity, delivering seamless
-          experience with a focus on animation-keeping your audience
-          engage and returning.`,
-      list: ["CMS Integration", "Motion & Animation", "3D Development"],
-    },
-    {
-      ref: doRef,
-      title: "Mobile Application",
-      desc: `A website developed to captivate and convert can elevate your
-          brand to new heights. My custom-coded sites are meticulously
-          crafted to reflect you unique identity, delivering seamless
-          experience with a focus on animation-keeping your audience
-          engage and returning.`,
-      list: ["CMS Integration", "Motion & Animation", "3D Development"],
-    },
-    {
-      ref: tinRef,
-      title: "seo",
-      desc: `A website developed to captivate and convert can elevate your
-          brand to new heights. My custom-coded sites are meticulously
-          crafted to reflect you unique identity, delivering seamless
-          experience with a focus on animation-keeping your audience
-          engage and returning.`,
-      list: ["CMS Integration", "Motion & Animation", "3D Development"],
-    },
-  ];
 
   return (
     <>
@@ -277,59 +289,76 @@ export default function Home() {
 
       {/* Recent Project */}
       <div id="page2" ref={page2Ref}>
-        <div>
-          <h2
-            style={{
-              display: "flex",
-              gap: "10px",
-            }}
-          >
-            <span>How </span>
-            <span> Can </span>
-            <span> i </span>
-            <span> Help </span>
-            <span> ?</span>
-          </h2>
-        </div>
+        <h2>
+          <span>Selected </span>
+          <span> Projects </span>
+        </h2>
 
-        <div className="serviceText">
-          <p className="para">Services</p>
-          <div className="serviceText2">
-            <p>
-              Frustrated with websites that don&apos;t eflect your brand or
-              drive growth? I craft premium web experience that captivate and
-              help you focus on growing your business
-            </p>
-          </div>
-        </div>
-
-        <div className="services">
-          {ServiceData.map((service, index) => (
-            <div className="number borders" ref={service.ref} key={index}>
-              <div className="numberL">
-                <h2>{String(index + 1).padStart(2, "0")}</h2>
-              </div>
-              <div className="numberR">
-                <h3>{service.title}</h3>
-                <p>{service.desc}</p>
-                <div className="list">
-                  {service.list.map((item, i) => (
-                    <div
-                      className={`listItem ${
-                        i === service.list.length - 1 ? "bt" : ""
-                      }`}
-                      key={i}
-                    >
-                      <span>{String(i + 1).padStart(2, "0")}</span>
-                      {item}
-                    </div>
-                  ))}
-                </div>
+        <div className="projects py-6">
+          <div className="project py-4">
+            <div className="project-info">
+              <h1>loerm ipsum</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                dolorum.
+              </p>
+            </div>
+            <div className="project-img">
+              <div className="image">
+                <img src={project1.src} alt="project" />
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="project py-4">
+            <div className="project-info">
+              <h1>loerm ipsum</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                dolorum.
+              </p>
+            </div>
+            <div className="project-img">
+              <div className="image">
+                <img src={project1.src} alt="project" />
+              </div>
+            </div>
+          </div>
+
+          <div className="project py-4">
+            <div className="project-info">
+              <h1>loerm ipsum</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                dolorum.
+              </p>
+            </div>
+            <div className="project-img">
+              <div className="image">
+                <img src={project1.src} alt="project" />
+              </div>
+            </div>
+          </div>
+
+          <div className="project py-4">
+            <div className="project-info">
+              <h1>loerm ipsum</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                dolorum.
+              </p>
+            </div>
+            <div className="project-img">
+              <div className="image">
+                <img src={project1.src} alt="project" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Services */}
+      <div className="service" style={{ height: "500px" }}></div>
     </>
   );
 }
